@@ -1,0 +1,44 @@
+# Operating System Files
+.DS_Store
+Thumbs.db
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+env/
+.pytest_cache/
+
+# SQLite Fact Stores & Replay DBs
+*.db
+*.db-wal
+*.db-shm
+*.db-journal
+
+# Ingestion Queues & Event Logs (Raw Personal Biometrics)
+data/health_dashboard.db
+data/inbox/
+data/records/
+archive/
+LabResults/
+
+# Credentials, Secrets & Local Environments
+config/*.json
+!config/*.example
+config/*.env
+!config/*.env.example
+*.key
+*.pem
+
+# Android Companion Build Artifacts
+android/.gradle/
+android/app/build/
+android/.idea/
+android/*.iml
+android/local.properties
+android/.cxx/
+
+# Node & Frontend
+node_modules/
+npm-debug.log*

@@ -1,0 +1,7 @@
+{
+  "access_token": "EXAMPLE_WITHINGS_ACCESS_TOKEN",
+  "refresh_token": "EXAMPLE_WITHINGS_REFRESH_TOKEN",
+  "expires_at": 1789456000,
+  "token_type": "Bearer",
+  "scope": "user.metrics"
+}
