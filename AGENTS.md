@@ -135,3 +135,7 @@ To maintain complete cross-agent coherence across long-running sessions, agents 
 4. **Mandatory Planning Topology Section**:
    - Every `implementation_plan.md` must include an explicit `## Agent Topology & Delegation Strategy` section defining whether multiagents are used, why/why not (e.g. single-file coupling vs disjoint write scopes), and model tier assignments.
 
+---
+
+## Sovereign Fleet & Edge Ingress
+This service is cataloged in Nodes Hub (faleiros.app). Persistent host deployments (OCI/QNAP), port allocations, and edge tunnels must follow the fleet-node-ops registry. Run fleet status or fleet env <app> to inspect topology.
