@@ -20,7 +20,7 @@ env/
 data/health_dashboard.db
 data/inbox/
 data/records/
-archive/
+/archive/
 LabResults/
 
 # Credentials, Secrets & Local Environments

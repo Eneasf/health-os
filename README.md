@@ -29,10 +29,10 @@ Most consumer health technology treats you as a consumer of proprietary scores r
 **Health OS** is a self-hosted, private-first personal health operating system and clinical command center designed for longitudinal bio-optimization and protocol management:
 
 1. **Sovereign & Self-Hosted:** All data is stored on hardware you control; the one exception is cropped scan images sent to the Gemini Vision API for OCR (see *Autonomous Health Intake & Gemini Vision OCR Governance* below). Ingestion runs 24/7 on a private QNAP NAS container; client applications synchronize over an encrypted private mesh network (Tailscale) with zero public open ports.
-2. **Clinical Null-Honesty ([ADR-016](docs/HANDOVER.md#2-master-decision-index-adr-summary)):** If data was not logged, it renders as an explicit `null` / `unlogged` state. Missing periods are never masked with fabricated lines or demonstration schedules.
-3. **Pure Laboratory Anchoring ([ADR-023](docs/HANDOVER.md#2-master-decision-index-adr-summary)):** Telemetry analysis across 2.47M historical samples confirmed that resting heart rate and autonomic metrics do not correlate with haematocrit ($r = +0.084, p = 0.794$). Blood surveillance is strictly anchored to venous laboratory draws; speculative wearable proxies are rejected.
+2. **Clinical Null-Honesty ([ADR-016](docs/DECISIONS.md#master-decision-index-adr-summary)):** If data was not logged, it renders as an explicit `null` / `unlogged` state. Missing periods are never masked with fabricated lines or demonstration schedules.
+3. **Pure Laboratory Anchoring ([ADR-023](docs/DECISIONS.md#master-decision-index-adr-summary)):** Telemetry analysis across 2.47M historical samples confirmed that resting heart rate and autonomic metrics do not correlate with haematocrit ($r = +0.084, p = 0.794$). Blood surveillance is strictly anchored to venous laboratory draws; speculative wearable proxies are rejected.
 4. **First-Class Coverage Denominators:** Every clinical calculation displays its backing sample size and completeness denominator (e.g. *"from 86 of 90 complete days"*). Sparse data streams display behavioral banners rather than misleading interpolations.
-5. **Event Sourcing with CQRS ([ADR-028](docs/HANDOVER.md#2-master-decision-index-adr-summary)):** Raw append-only JSON event files are the sole system of record. SQLite is strictly a disposable read projection that can be rebuilt deterministically from raw logs in seconds.
+5. **Event Sourcing with CQRS ([ADR-028](docs/DECISIONS.md#master-decision-index-adr-summary)):** Raw append-only JSON event files are the sole system of record. SQLite is strictly a disposable read projection that can be rebuilt deterministically from raw logs in seconds.
 
 ---
 
@@ -78,8 +78,8 @@ The frontend command center is a modular, high-density clinical dashboard built 
 👉 **[Launch the Live Interactive Demo on GitHub Pages](https://eneasf.github.io/health-os/)**
 
 ### Workspace 1: Physical Adaptation Triad
-The primary landing workspace ([ADR-026](docs/HANDOVER.md#2-master-decision-index-adr-summary)) unifies **Body Composition (Outcome)**, **Nutrition (Fuel)**, and **Exercise (Stimulus)**:
-- **Body Composition 12-Series Engine**: Unified 0–95 kg mass grounding ([ADR-009](docs/HANDOVER.md#2-master-decision-index-adr-summary)), 7-day and 30-day EMAs, dual physiological corridors for fat and skeletal muscle mass, height-normalized FFMI ([Kouri et al. 1995](docs/HANDOVER.md#2-master-decision-index-adr-summary)), and InBody benchmark diamonds.
+The primary landing workspace ([ADR-026](docs/DECISIONS.md#master-decision-index-adr-summary)) unifies **Body Composition (Outcome)**, **Nutrition (Fuel)**, and **Exercise (Stimulus)**:
+- **Body Composition 12-Series Engine**: Unified 0–95 kg mass grounding ([ADR-009](docs/DECISIONS.md#master-decision-index-adr-summary)), 7-day and 30-day EMAs, dual physiological corridors for fat and skeletal muscle mass, height-normalized FFMI ([Kouri et al. 1995](docs/DECISIONS.md#master-decision-index-adr-summary)), and InBody benchmark diamonds.
 - **Nutritional Coverage & Fueling**: Complete-day partitioning with explicit sample denominators (*"from 86 of 90 complete days"*), caloric balance, and protein/kg ratios.
 - **Mechanical Exercise Stimulus**: 7-day workout cadence, 15-workout interactive pager, intra-session HR curves, 5 cardiac zones, HRR-60 recovery drops, and eGym multi-set cards.
 
@@ -88,17 +88,17 @@ The primary landing workspace ([ADR-026](docs/HANDOVER.md#2-master-decision-inde
 ---
 
 ### Workspace 2: Autonomic & Recovery Surveillance
-Dedicated autonomic monitoring without speculative clinical proxies ([ADR-023](docs/HANDOVER.md#2-master-decision-index-adr-summary)):
+Dedicated autonomic monitoring without speculative clinical proxies ([ADR-023](docs/DECISIONS.md#master-decision-index-adr-summary)):
 - **Resting Heart Rate & HRV Corridor**: 7-day rolling normative corridor, resting HR trends, and autonomic stress tracking.
 - **Cardiovascular HRR-60 Drop**: High-resolution 60-second recovery curves measuring post-exercise parasympathetic reactivation.
-- **Coverage-Gated Sleep Architecture**: Strictly gated behind a rolling $\ge 4$ of 7 nights requirement ([ADR-016](docs/HANDOVER.md#2-master-decision-index-adr-summary)) to prevent misleading interpolation through sparse periods; renders Deep, REM, Light, and Awake stages with nocturnal dip percentages when complete.
+- **Coverage-Gated Sleep Architecture**: Strictly gated behind a rolling $\ge 4$ of 7 nights requirement ([ADR-016](docs/DECISIONS.md#master-decision-index-adr-summary)) to prevent misleading interpolation through sparse periods; renders Deep, REM, Light, and Awake stages with nocturnal dip percentages when complete.
 
 ![Autonomic Recovery & Sleep](docs/images/02_autonomic_recovery_sleep.png)
 
 ---
 
 ### Workspace 3: Longitudinal Bloodwork & Biomarker Matrix
-Longitudinal venous bloodwork comprising 86 analytes across 18 physiological systems ([ADR-022](docs/HANDOVER.md#2-master-decision-index-adr-summary)):
+Longitudinal venous bloodwork comprising 86 analytes across 18 physiological systems ([ADR-022](docs/DECISIONS.md#master-decision-index-adr-summary)):
 - **Bullet Graph Matrix**: Discrete scatter points (no fabricated continuous lines across test gaps) with lab-reported reference intervals, canonical unit conversions, and priority triage sorting.
 - **Clinical Consultation Brief**: Automated physician summary formatting out-of-range metrics and multi-year trajectories across international SI Metric and Conventional unit standards.
 - **Draw Readiness Gate**: Evaluates prerequisite fasting and panel completeness before ordering scheduled draws.
@@ -108,7 +108,7 @@ Longitudinal venous bloodwork comprising 86 analytes across 18 physiological sys
 ---
 
 ### Workspace 4: History & Contextual Life Events
-Multimodal physiological chart superimposition ([ADR-038](docs/HANDOVER.md#2-master-decision-index-adr-summary)):
+Multimodal physiological chart superimposition ([ADR-038](docs/DECISIONS.md#master-decision-index-adr-summary)):
 - **Contextual Life Events**: Interleaved category bands (Protocols, Training, Lifestyle, Nutrition, Travel) and frosted glyph pins super-imposed directly onto historical biometric curves.
 - **Life Eras Curator**: High-level macro-cycle tracking capturing intent, compound stacks, nutritional strategies, and empirical learnings across years.
 
@@ -117,7 +117,7 @@ Multimodal physiological chart superimposition ([ADR-038](docs/HANDOVER.md#2-mas
 ---
 
 ### Workspace 5: Protocol Studio & Active Regimens
-Dynamic protocol management and adherence operations ([ADR-037](docs/HANDOVER.md#2-master-decision-index-adr-summary)):
+Dynamic protocol management and adherence operations ([ADR-037](docs/DECISIONS.md#master-decision-index-adr-summary)):
 - **Multi-Vector Protocol Manifests**: Event-sourced definitions of active regimens, compound dosages, delivery routes, and safety redlines.
 - **Monday-Start Adherence Matrix**: Weekly adherence ledger with dot/pill/dash completion states, fast affirmative attestation modals, and retroactive backfilling.
 
@@ -126,7 +126,7 @@ Dynamic protocol management and adherence operations ([ADR-037](docs/HANDOVER.md
 ---
 
 ### Mobile Ergonomics & Bottom Navigation Dock
-Fully responsive mobile architecture ([ADR-025](docs/HANDOVER.md#2-master-decision-index-adr-summary), [ADR-035](docs/HANDOVER.md#2-master-decision-index-adr-summary)):
+Fully responsive mobile architecture ([ADR-025](docs/DECISIONS.md#master-decision-index-adr-summary), [ADR-035](docs/DECISIONS.md#master-decision-index-adr-summary)):
 - Root overflow-x containment, adaptive Chart.js canvas isolation, and sticky frozen columns for complex matrix tables.
 - Fixed 5-tab **Mobile Bottom Navigation Dock** with 1-tap workspace transitions meeting WCAG 2.2 touch-target standards ($\ge 44\text{px}$).
 
@@ -141,7 +141,7 @@ Fully responsive mobile architecture ([ADR-025](docs/HANDOVER.md#2-master-decisi
 Health OS was engineered under a formal, human-directed agentic development framework:
 
 - **System Architect & Product Owner (Eneas Faleiros):** Defined domain boundaries, clinical safety invariants, mathematical equations, data contracts, and architectural decisions.
-- **Autonomous Specialist AI Subagents:** Assigned disjoint, non-overlapping tasks under strict 3-tier routing ([ADR-024](docs/HANDOVER.md#2-master-decision-index-adr-summary)):
+- **Autonomous Specialist AI Subagents:** Assigned disjoint, non-overlapping tasks under strict 3-tier routing ([ADR-024](docs/DECISIONS.md#master-decision-index-adr-summary)):
   - *Tier 1 (Mechanical Execution):* Deterministic unit tests, JSON formatting, spreadsheet parsing.
   - *Tier 2 (Standard Engineering):* SQLite migrations, CQRS replay scripts, data pipelines.
   - *Tier 3 (Complex Architecture & UI):* Multi-workspace state management, SVG charting math, clinical protocol rules.
@@ -156,8 +156,8 @@ The companion app ([`android/`](android/)) runs as a low-overhead background col
 
 - **Kotlin 2.0 & Jetpack Compose**: Modern reactive UI built with Material 3 tokens.
 - **Samsung Health Data SDK (v1.1.0)**: Reads 25 continuous health data types (Heart Rate, HRV, Sleep Sessions, Blood Oxygen, eGym Workouts, Body Composition, Nutrition).
-- **Two-Sided SHA-256 Hash Contract ([ADR-017](docs/HANDOVER.md#2-master-decision-index-adr-summary))**: Calculates compact SHA-256 hashes across payload spans to guarantee cryptographic transmission integrity before Mac inbox ingestion.
-- **1-Tap Quick Protocol Dose Attestation ([ADR-039](docs/HANDOVER.md#2-master-decision-index-adr-summary))**: Discovers active compounds via `GET /api/protocol/active`, logs affirmative compliance in 1 tap, and supports offline queueing with automatic backoff sync.
+- **Two-Sided SHA-256 Hash Contract ([ADR-017](docs/DECISIONS.md#master-decision-index-adr-summary))**: Calculates compact SHA-256 hashes across payload spans to guarantee cryptographic transmission integrity before Mac inbox ingestion.
+- **1-Tap Quick Protocol Dose Attestation ([ADR-039](docs/DECISIONS.md#master-decision-index-adr-summary))**: Discovers active compounds via `GET /api/protocol/active`, logs affirmative compliance in 1 tap, and supports offline queueing with automatic backoff sync.
 
 ---
 
@@ -194,10 +194,13 @@ The companion app ([`android/`](android/)) runs as a low-overhead background col
 │       └── samsung_health/                           # Continuous Daily Telemetry Snapshots
 ├── docs/                                             # Authoritative Specifications & Milestones
 │   ├── DASHBOARD_SPECIFICATION.md                    # Clinical UI Blueprint & 39 ADR Logs
-│   ├── HANDOVER.md                                   # Master System Map, Schema Versions & Handover
+│   ├── DECISIONS.md                                  # Canonical ADR Index (ADR-001..ADR-039)
+│   ├── BACKLOG.md                                    # Delete-on-Close Open Work Register
+│   ├── REPO_MAP.md                                   # System Layout & Verified Pipeline Baseline
 │   ├── SYSTEM_DESIGN.md                              # Core Pipeline Architecture & Deduplication
 │   ├── images/                                       # Light-Mode Visual Showcase Assets
-│   └── milestones/                                   # 25 Dedicated Milestone Slice Records (M1–M25)
+│   ├── milestones/                                   # 25 Dedicated Milestone Slice Records (M1–M25)
+│   └── archive/HANDOVER_LEGACY.md                    # Archived Legacy Handover (v10.0)
 ├── protocols/                                        # Clinical Protocols & Pharmacology Guidelines
 └── scripts/                                          # Zero-Dependency Python Automation Workers
     ├── service_manager.sh                            # LaunchAgent Daemon Controller (Port 8765)
@@ -228,7 +231,7 @@ The local synchronization server runs as a macOS LaunchAgent daemon binding to p
 ```
 
 ### 2. Exporting Dashboard Data & Local Launch
-Health OS uses a deterministic export pipeline ([ADR-013](docs/HANDOVER.md#2-master-decision-index-adr-summary)). Running the exporter updates `dashboard/dashboard_data.json` and injects data directly into `<script id="injected-dashboard-data">` in `dashboard/index.html` without dirtying git history:
+Health OS uses a deterministic export pipeline ([ADR-013](docs/DECISIONS.md#master-decision-index-adr-summary)). Running the exporter updates `dashboard/dashboard_data.json` and injects data directly into `<script id="injected-dashboard-data">` in `dashboard/index.html` without dirtying git history:
 
 ```bash
 # Export the latest database projection to the dashboard
@@ -239,7 +242,7 @@ open dashboard/index.html
 ```
 
 ### 3. Rebuilding the Database from Raw Events (CQRS Replay)
-SQLite is strictly a disposable read projection. To rebuild the entire database from raw append-only JSON files ([ADR-027](docs/HANDOVER.md#2-master-decision-index-adr-summary), [ADR-028](docs/HANDOVER.md#2-master-decision-index-adr-summary)):
+SQLite is strictly a disposable read projection. To rebuild the entire database from raw append-only JSON files ([ADR-027](docs/DECISIONS.md#master-decision-index-adr-summary), [ADR-028](docs/DECISIONS.md#master-decision-index-adr-summary)):
 
 ```bash
 # Stop daemon locks, purge temporary DB files, and replay all events
@@ -278,6 +281,6 @@ Health OS automates ingestion of analog physical health data (such as gym machin
 
 - 🏛️ **[System Architecture & Design Document](docs/SYSTEM_DESIGN.md)**: Master data pipelines, ER diagrams, and deduplication specifications.
 - 📐 **[Dashboard Specification & ADR Log](docs/DASHBOARD_SPECIFICATION.md)**: Authoritative clinical UI rules, Chart.js mathematics, and complete Architectural Decision Records (`ADR-001` through `ADR-039`).
-- 🗺️ **[System Master Map & Handover Guide](docs/HANDOVER.md)**: Active schema contracts, milestone indices, and open work registers.
+- 🗺️ **[Decisions, Backlog & Repo Map](docs/DECISIONS.md)**: Canonical ADR index, [open backlog](docs/BACKLOG.md), and [repository map](docs/REPO_MAP.md) (legacy handover archived at [`docs/archive/HANDOVER_LEGACY.md`](docs/archive/HANDOVER_LEGACY.md)).
 - 🤖 **[Agent Guidelines & Repository Protocols](AGENTS.md)**: Mandatory git hygiene standards, model tier routing, and database safety rules.
 - 📜 **[Milestone Slice Archives](docs/milestones/)**: Historical design blueprints, testing notes, and verification logs for all 25 completed milestones.
