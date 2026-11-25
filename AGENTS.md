@@ -17,11 +17,11 @@ Personal health data operating system and clinical command center.
 | **`MILESTONES_DIR`** | `docs/milestones/` |
 
 1. **Branch Transparency & Scoping**: State `Active Branch: <branch>` in updates. Propose `feat/<name>` before architectural changes, schema migrations, or multi-file refactors.
-2. **Atomic Commits & Clean Tree**: Use Conventional Commits (`feat`, `fix`, `docs`, `refactor`, `test`). Keep `git status` 100% clean at every commit/merge. Keep `.gitignore` blocking `data/health_dashboard.db`, `config/withings_tokens.json`, and IDE/scratch artifacts.
+2. **Atomic Commits & Clean Tree**: Use Conventional Commits (`feat`, `fix`, `docs`, `refactor`, `test`). Keep `git status` 100% clean at every commit/merge. Keep `.gitignore` blocking `data/health_dashboard.db`, runtime Withings token JSON files under `config/` (template at `config/withings_tokens.json.example`), and IDE/scratch artifacts.
 3. **Byte-Deterministic Generated Artifacts (`ADR-013`)**: Scripts writing tracked files must produce byte-identical output from identical inputs — no wall-clock timestamps, unordered keys, or run-scoped IDs.
 4. **Daemon Restart & Port Probe (`ADR-014` / `ADR-027`)**:
    - `scripts/sync_server.py` runs as a LaunchAgent and caches imports at startup. After changing any imported module, run `./scripts/service_manager.sh restart`, confirm start time postdates edits (`ps -o lstart= -p $(pgrep -f sync_server.py)`), and verify `curl -s http://127.0.0.1:8765/api/status`.
-   - Before `scripts/rebuild_database.py --clean`, stop the daemon (`./scripts/service_manager.sh stop`) so `.db`/`.db-wal`/`.db-shm` release locks cleanly, then restart afterward (`scripts/sync_from_nas.sh` automates this).
+   - Before `scripts/rebuild_database.py --clean`, stop the daemon (`./scripts/service_manager.sh stop`) so `.db`/`.db-wal`/`.db-shm` release locks cleanly, then restart afterward (automated by the upstream NAS sync wrapper in the private production repository).
 5. **Live Database Write Safety in Tests**: Never write to `data/health_dashboard.db`, `data/inbox/`, or `archive/` from tests. Monkeypatch `DB_PATH`, `INBOX_DIR`, `ARCHIVE_BASE_DIR`, and `LOCK_FILE_PATH` onto scratch copies and confirm production paths remain untouched.
 6. **Event Sourcing & CQRS Invariant (`ADR-028`)**:
    - Immutable raw files (`data/records/<domain>/`, `archive/`) are the **sole system of record**; SQLite is strictly a disposable read projection. Direct-to-SQL mutations without a raw event write are prohibited.
